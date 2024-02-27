@@ -36,16 +36,12 @@ class EncryptMode(Magenta, metaclass=ABCMeta):
 
     def check_key(self, key: bytes):
         key_length = len(key)
-
         if key_length == 16 or key_length == 24 or key_length == 32:
             return key
-
         if key_length < 16:
             return key + bytes(16 - key_length)
-
         elif key_length < 24:
             return key + bytes(24 - key_length)
-
         elif key_length < 32:
             return key + bytes(32 - key_length)
         else:

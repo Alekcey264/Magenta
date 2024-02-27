@@ -1,9 +1,9 @@
 from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QRadioButton, QTextEdit, QPushButton, QMessageBox
 import sys
 from cbc import CipherBlockChaining
-from cfb import CFB
-from ecb import ECB
-from ofb import OFB
+from cfb import CipherFeedBack
+from ecb import ElectronicCodeBook
+from ofb import OutputFeedBack
 from magenta import Magenta
 
 class MainWindow(QWidget):
@@ -104,11 +104,11 @@ class MainWindow(QWidget):
             if not vector:
                 QMessageBox.warning(self, "Ошибка", "Введите вектор", QMessageBox.StandardButton.Ok)
                 return
-            method = CFB(key.encode(), vector.encode())
+            method = CipherFeedBack(key.encode(), vector.encode())
             encoded_message = method.encode(message.encode())
             decoded_message = method.decode(encoded_message)
         elif self.ecb.isChecked():
-            method = ECB(key.encode())
+            method = ElectronicCodeBook(key.encode())
             encoded_message = method.encode(message.encode())
             decoded_message = method.decode(encoded_message)
         elif self.ofb.isChecked():
@@ -116,7 +116,7 @@ class MainWindow(QWidget):
             if not vector:
                 QMessageBox.warning(self, "Ошибка", "Введите вектор", QMessageBox.StandardButton.Ok)
                 return
-            method = OFB(key.encode(), vector.encode())
+            method = OutputFeedBack(key.encode(), vector.encode())
             encoded_message = method.encode(message.encode())
             decoded_message = method.decode(encoded_message)
 

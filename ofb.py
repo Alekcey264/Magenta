@@ -1,6 +1,6 @@
 from encryptmode import EncryptMode
 
-class OFB(EncryptMode):
+class OutputFeedBack(EncryptMode):
 
     def encode(self, text: bytes):
         text = self.check_length(text)

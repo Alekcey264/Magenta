@@ -1,6 +1,6 @@
 from encryptmode import EncryptMode
 
-class ECB(EncryptMode):
+class ElectronicCodeBook(EncryptMode):
 
     def __init__(self, key):
         super().__init__(key, bytes())
